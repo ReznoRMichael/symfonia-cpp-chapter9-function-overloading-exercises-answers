@@ -1,0 +1,17 @@
+I. Przeładowanie czego czym - przeładowanie jednego słowa różnymi znaczeniami. W tym wypadku - identyczna nazwa funkcji (w obrębie jej zakresu ważności) może odnosić się do różnych funkcji, pod warunkiem, że różnią się one liczbą lub typami argumentów wywołania.
+
+II. Nazwa funkcji jest przeładowana, jeśli istnieją dwie (lub więcej) definicje funkcji o tej samej nazwie...
+b) w tym samym zakresie ważności
+e) funkcje te mają różną listę (typ i kolejność) argumentów
+i) typ rezultatu tych funkcji nie ma znaczenia
+
+III. Które nie mogą się znaleźć w tym samym zakresie ważności?
+typedef int cal;
+enum akcja;
+enum dni;
+a) void funk(int liczba) {} - może
+b) void funk(akcja a) {} - może
+c) void funk(dni a) {} - może
+d) void funk(cal a) {} - nie może (typ int)
+
+IV. Gdyby były to deklaracje, kompilator by nie zaprotestował, sądząc, że mamy sklerozę, deklarując te same funkcje kilka razy (tylko definicja może być jedna).
