@@ -15,3 +15,44 @@ c) void funk(dni a) {} - może
 d) void funk(cal a) {} - nie może (typ int)
 
 IV. Gdyby były to deklaracje, kompilator by nie zaprotestował, sądząc, że mamy sklerozę, deklarując te same funkcje kilka razy (tylko definicja może być jedna).
+
+V. Które z nich mogą spowodować problemy i w jakich sytuacjach?
+int deutz(int a) { return 1; } - konflikt, ta funkcja konfliktuje z funkcją double deutz(int, char) gdy ją wywołamy (w czasie deklaracji nie sprawi problemu)
+double deutz(double d) { return 1.0; }
+double deutz(char znak, int k = 6) { return 1.0; }
+double deutz(int k, char znak = 'x') { return 1.0; } - konflikt
+
+VI. Łączenie pliku C++ z plikiem C. (program) - wrócić później
+
+VII. W trakcie pisania programu w C++ można skorzystać z funkcji w pliku "dekl.h" napisanym w C przy pomocy:
+extern "C" { #include "dekl.h" }
+
+VIII. Jeśli w programie, w którym nazwa funkcji fun jest już przeładowana, otwieramy lokalny zakres, a w nim dodatkowo deklarujemy funkcję o tej samej nazwie, to:
+c) deklaracja ta unieważnia w tym zakresie przeładowanie tej nazwy fun - dokonując zasłonięcia jej.
+
+IX. Które funkcje mogą być ze sobą w konflikcie:
+a) void F( char tab[] ) { return ; } // conflict
+b) double F( int t[] ) { return 1; }
+c) char F( char * wsk ) { return 1; } // conflicts with void F( char tab[] )
+d) char F( char tablica[4][5] ) { return 1; } // conflict
+e) char F( char (* tablica) [5] ) { return 1; } // conflicts with char F( char tablica[4][5] )
+f) char F( char tablica[6][5] ) { return 1; } // conflicts with char F( char tablica[4][5] )
+g) char F( char tablica[1][4][5] ) { return 1; }
+
+X. Które funkcje mogą być ze sobą w konflikcie:
+a) void G(int m); // konflikt
+b) void G(int *n); // brak konfliktu, funkcja przyjmująca adres jakiegoś obiektu
+c) void G(int &r); // konflikt, funkcja przyjmująca argument poprzez referencję (może zmieniać oryginalną zmienną)
+
+
+XI. Które funkcje mogą być ze sobą w konflikcie:
+a) void rysuj(int m); // konflikt
+b) void rysuj(int *m); // brak konfliktu, funkcja przyjmująca adres jakiegoś obiektu
+c) void rysuj(const int n); // konflikt, obiecuje, że swojej lokalnej kopii przesłanego argumentu nie będzie zmieniać
+d) void rysuj(const int *n); // brak konfliktu, funkcja przyjmująca adres jakiegoś obiektu
+e) void rysuj(volatile int k); // konflikt, obiecuje nie robić żadnych optymalizacji z lokalną kopią
+f) void rysuj(volatile int *k); // brak konfliktu, funkcja przyjmująca adres jakiegoś obiektu
+
+XII. Ekstremalna definicja funkcji. (program)
+
+char* (*fun( double* (*wskf1) (char*), double (*wskf2) (int, double) )) (char*) {  };

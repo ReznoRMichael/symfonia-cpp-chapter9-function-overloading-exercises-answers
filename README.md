@@ -12,6 +12,11 @@ Learning C++. Doing all exercises and answering all questions from Chapter 9 of 
 * Notepad++
 * CodeBlocks
 
+## Things to go back after gaining more knowledge
+
+* VI/6 - linking a C module into C++ program
+* XIII/13 — XVI/16 - advanced knowledge
+
 ## Contact
 
 [ReznoRMichael](https://github.com/ReznoRMichael)
